@@ -9,4 +9,4 @@ spec:
   buildDefaults:
     imageLabels:
     - name: prodbuild
-      value: true
+      value: "true"

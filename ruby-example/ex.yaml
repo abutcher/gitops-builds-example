@@ -1,31 +1,31 @@
 ---
-kind: "BuildConfig"
-apiVersion: "v1"
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
 metadata:
-  name: "ruby-sample-build"
+  name: ruby-sample-build
 spec:
-  runPolicy: "Serial"
+  runPolicy: Serial
   triggers:
     -
-      type: "GitHub"
+      type: GitHub
       github:
-        secret: "secret101"
-    - type: "Generic"
+        secret: secret101
+    - type: Generic
       generic:
-        secret: "secret101"
+        secret: secret101
     -
-      type: "ImageChange"
+      type: ImageChange
   source:
     git:
-      uri: "https://github.com/openshift/ruby-hello-world"
+      uri: https://github.com/openshift/ruby-hello-world
   strategy:
     sourceStrategy:
       from:
-        kind: "ImageStreamTag"
-        name: "ruby-20-centos7:latest"
+        kind: ImageStreamTag
+        name: ruby-20-centos7:latest
   output:
     to:
-      kind: "ImageStreamTag"
-      name: "origin-ruby-sample:latest"
+      kind: ImageStreamTag
+      name: origin-ruby-sample:latest
   postCommit:
-      script: "bundle exec rake test"
+      script: bundle exec rake test
